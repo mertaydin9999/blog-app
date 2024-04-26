@@ -11,7 +11,7 @@ using blog_app.Data.Concrete.EfCore;
 namespace blog_app.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240426061721_InitialCreate")]
+    [Migration("20240426080910_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

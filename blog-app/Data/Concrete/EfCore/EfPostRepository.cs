@@ -6,7 +6,7 @@ namespace blog_app.Data.Concrete
 {
     public class EfPostRepository : IPostRepository
     {
-        private readonly BlogContext _context;
+        private BlogContext _context;
         public EfPostRepository(BlogContext context)
         {
             _context = context;

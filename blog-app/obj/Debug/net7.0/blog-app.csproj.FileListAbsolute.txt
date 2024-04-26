@@ -61,3 +61,5 @@
 /Users/mert/Desktop/asp-net/blog-app/blog-app/obj/Debug/net7.0/blog-app.pdb
 /Users/mert/Desktop/asp-net/blog-app/blog-app/obj/Debug/net7.0/blog-app.genruntimeconfig.cache
 /Users/mert/Desktop/asp-net/blog-app/blog-app/obj/Debug/net7.0/ref/blog-app.dll
+/Users/mert/Desktop/asp-net/blog-app/blog-app/obj/Debug/net7.0/blog-app.RazorAssemblyInfo.cache
+/Users/mert/Desktop/asp-net/blog-app/blog-app/obj/Debug/net7.0/blog-app.RazorAssemblyInfo.cs

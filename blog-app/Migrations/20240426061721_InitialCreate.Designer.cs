@@ -11,7 +11,7 @@ using blog_app.Data.Concrete.EfCore;
 namespace blog_app.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240425115848_InitialCreate")]
+    [Migration("20240426061721_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -71,6 +71,9 @@ namespace blog_app.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
@@ -109,6 +112,9 @@ namespace blog_app.Migrations
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT");

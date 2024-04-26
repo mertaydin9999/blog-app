@@ -1,3 +1,5 @@
+using blog_app.Data.Abstract;
+using blog_app.Data.Concrete;
 using blog_app.Data.Concrete.EfCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +10,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BlogContext>(options =>{
     options.UseSqlite(builder.Configuration["ConnectionStrings:Sql_connection"]);
 } );
+
+builder.Services.AddScoped<IPostRepository, EfPostRepository>();
+
 var app = builder.Build();
 SeedData.TestVerileriniDoldur(app);
 app.MapDefaultControllerRoute();

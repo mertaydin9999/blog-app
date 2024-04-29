@@ -17,19 +17,19 @@ namespace blog_app.Data.Concrete.EfCore
                 if(!context.Tags.Any())
                 {
                     context.Tags.AddRange(
-                        new Tag{Text = "web programlama" ,Url="web-programlama"},
-                        new Tag{Text = "backend" , Url="backend"},
-                        new Tag{Text = "frontend" , Url="frontend"},
-                        new Tag{Text = "php",Url="php"},
-                        new Tag{Text = "fullstack",Url="fullstack"}
+                        new Tag{Text = "web programlama" ,Url="web-programlama", Color=TagColors.warning},
+                        new Tag{Text = "backend" , Url="backend",Color=TagColors.info},
+                        new Tag{Text = "frontend" , Url="frontend",Color=TagColors.success},
+                        new Tag{Text = "php",Url="php",Color=TagColors.secondary},
+                        new Tag{Text = "fullstack",Url="fullstack",Color=TagColors.primary}
                     );
                     context.SaveChanges();
                 }
                 if( !context.Users.Any())
                 {
                     context.Users.AddRange(
-                        new User{UserName = "Mert Aydin"},
-                        new User{UserName = "Merve Aydin"}
+                        new User{UserName = "Mert Aydin",Image="p1.jpg"},
+                        new User{UserName = "Merve Aydin",Image="p2.jpg"}
                     );
                     context.SaveChanges();
                 }
@@ -44,7 +44,11 @@ namespace blog_app.Data.Concrete.EfCore
                             PublishedOn =DateTime.Now.AddDays(-10),
                             Tags = context.Tags.Take(3).ToList(),
                             Image="1.jpg",
-                            UserId = 1
+                            UserId = 1,
+                            Comments = new  List<Comment>{
+                                new Comment{ CommentText= "Iyi bir kurs" , PublishedOn=new DateTime(),UserId=1},
+                                new Comment{ CommentText= "Cok faydalandigim bir kurs" , PublishedOn=new DateTime(),UserId=2}
+                                }
                         },
                         new Post{ 
                             Title = "PHP",

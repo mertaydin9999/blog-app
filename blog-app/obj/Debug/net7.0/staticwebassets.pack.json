@@ -17,6 +17,18 @@
       "PackagePath": "staticwebassets/img/3.jpg"
     },
     {
+      "Id": "/Users/mert/Desktop/asp-net/blog-app/blog-app/wwwroot/img/avatar.jpg",
+      "PackagePath": "staticwebassets/img/avatar.jpg"
+    },
+    {
+      "Id": "/Users/mert/Desktop/asp-net/blog-app/blog-app/wwwroot/img/p1.jpg",
+      "PackagePath": "staticwebassets/img/p1.jpg"
+    },
+    {
+      "Id": "/Users/mert/Desktop/asp-net/blog-app/blog-app/wwwroot/img/p2.jpg",
+      "PackagePath": "staticwebassets/img/p2.jpg"
+    },
+    {
       "Id": "/Users/mert/Desktop/asp-net/blog-app/blog-app/wwwroot/lib/bootstrap-icons/bootstrap-icons.svg",
       "PackagePath": "staticwebassets/lib/bootstrap-icons/bootstrap-icons.svg"
     },

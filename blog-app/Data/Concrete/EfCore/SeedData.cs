@@ -28,8 +28,8 @@ namespace blog_app.Data.Concrete.EfCore
                 if( !context.Users.Any())
                 {
                     context.Users.AddRange(
-                        new User{UserName = "Mert Aydin",Image="p1.jpg"},
-                        new User{UserName = "Merve Aydin",Image="p2.jpg"}
+                        new User{UserName = "mertaydin", Name="Mert Aydin",Email="mert@gmail.com",Password="12345",Image="p1.jpg"},
+                        new User{UserName = "onuraydin",Name="Onur Aydin",Email="onur@gmail.com",Password="12345" ,Image="p2.jpg"}
                     );
                     context.SaveChanges();
                 }

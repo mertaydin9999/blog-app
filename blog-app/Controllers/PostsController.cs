@@ -1,18 +1,31 @@
 using blog_app.Data.Abstract;
 using blog_app.Data.Concrete.EfCore;
+using blog_app.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 namespace blog_app.Controllers
 {
     public class PostsController:Controller
     {
-        private IPostRepository _repository;
-        public PostsController(IPostRepository repository)
+        private IPostRepository _postRepository;
+       
+        public PostsController(IPostRepository postRepository)
         {
-            _repository = repository;
+            _postRepository = postRepository;
+           
         }
         public IActionResult Index()
         {
-            return View(_repository.Posts.ToList());
+            return View(
+                new PostsViewModel
+                {
+                    Posts = _postRepository.Posts.ToList()
+                }
+            );
+        }
+        public async Task<IActionResult> Details(string url)
+        {
+            return View(await _postRepository.Posts.FirstOrDefaultAsync(p=>p.Url==url));
         }
 
     }

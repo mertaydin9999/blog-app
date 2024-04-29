@@ -36,7 +36,8 @@ namespace blog_app.Controllers
                         .ThenInclude(x => x.User)
                         .FirstOrDefaultAsync(p => p.Url == url));
         }
-        public IActionResult AddComment(int PostId,string UserName,string CommentText,string Url)
+        [HttpPost]
+        public JsonResult AddComment(int PostId,string UserName,string CommentText,string Url)
         {
             var entity = new Comment
             {
@@ -50,7 +51,12 @@ namespace blog_app.Controllers
                 }
             };
             _commentRepository.CreateComment(entity);
-            return RedirectToAction("post_details",new {url = Url});            
+            return Json(new {
+                UserName,
+                CommentText,
+                entity.PublishedOn,
+                entity.User.Image
+            });           
         }
 
 

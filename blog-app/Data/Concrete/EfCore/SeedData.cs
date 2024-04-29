@@ -45,10 +45,10 @@ namespace blog_app.Data.Concrete.EfCore
                             Tags = context.Tags.Take(3).ToList(),
                             Image="1.jpg",
                             UserId = 1,
-                            Comments = new  List<Comment>{
-                                new Comment{ CommentText= "Iyi bir kurs" , PublishedOn=new DateTime(),UserId=1},
-                                new Comment{ CommentText= "Cok faydalandigim bir kurs" , PublishedOn=new DateTime(),UserId=2}
-                                }
+                            Comments = new  List<Comment>{ 
+                                new Comment { CommentText = "iyi bir kurs", PublishedOn = DateTime.Now.AddDays(-20), UserId = 1},
+                                new Comment { CommentText = "çok faydalandığım bir kurs", PublishedOn = DateTime.Now.AddDays(-10), UserId = 2}
+                        }
                         },
                         new Post{ 
                             Title = "PHP",
@@ -61,7 +61,7 @@ namespace blog_app.Data.Concrete.EfCore
                             UserId = 1
                         },
                         new Post{ 
-                            Title = "Django ",
+                            Title = "Django",
                             Content = "Django dersleri",
                             Url="django",
                             IsActive = true,

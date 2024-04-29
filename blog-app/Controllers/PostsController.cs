@@ -1,5 +1,6 @@
 using blog_app.Data.Abstract;
 using blog_app.Data.Concrete.EfCore;
+using blog_app.Entity;
 using blog_app.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +9,12 @@ namespace blog_app.Controllers
     public class PostsController:Controller
     {
         private IPostRepository _postRepository;
+        private ICommentRepository _commentRepository;
        
-        public PostsController(IPostRepository postRepository)
+        public PostsController(IPostRepository postRepository,ICommentRepository commentRepository)
         {
             _postRepository = postRepository;
+            _commentRepository = commentRepository;
            
         }
         public async Task<IActionResult> Index(string tag)
@@ -24,16 +27,32 @@ namespace blog_app.Controllers
             }
             return View(new PostsViewModel{Posts = await posts.ToListAsync()});
         }
-        public async Task<IActionResult> Details(string url)
+         public async Task<IActionResult> Details(string url)
         {
-            return View(await 
-                        _postRepository
+            return View(await _postRepository
                         .Posts
-                        .Include(x=>x.Tags)
-                        .Include(x=>x.Comments)
-                        .ThenInclude(x=>x.User)
-                        .FirstOrDefaultAsync(p=>p.Url==url));
+                        .Include(x => x.Tags)
+                        .Include(x => x.Comments)
+                        .ThenInclude(x => x.User)
+                        .FirstOrDefaultAsync(p => p.Url == url));
         }
+        public IActionResult AddComment(int PostId,string UserName,string CommentText,string Url)
+        {
+            var entity = new Comment
+            {
+                PostId = PostId,
+                CommentText = CommentText,
+                PublishedOn = DateTime.Now,
+                User = new User
+                {
+                    UserName = UserName,
+                    Image = "avatar.jpg"
+                }
+            };
+            _commentRepository.CreateComment(entity);
+            return RedirectToAction("post_details",new {url = Url});            
+        }
+
 
     }
 }

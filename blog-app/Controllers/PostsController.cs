@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using blog_app.Data.Abstract;
 using blog_app.Data.Concrete.EfCore;
 using blog_app.Entity;
@@ -39,26 +40,51 @@ namespace blog_app.Controllers
                         .FirstOrDefaultAsync(p => p.Url == url));
         }
         [HttpPost]
-        public JsonResult AddComment(int PostId,string UserName,string CommentText,string Url)
+        public JsonResult AddComment(int PostId,string CommentText)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var username = User.FindFirstValue(ClaimTypes.Name);
+            var avatar = User.FindFirstValue(ClaimTypes.UserData);
             var entity = new Comment
             {
                 PostId = PostId,
                 CommentText = CommentText,
                 PublishedOn = DateTime.Now,
-                User = new User
-                {
-                    UserName = UserName,
-                    Image = "avatar.jpg"
-                }
+                UserId = int.Parse(userId ?? "") 
             };
             _commentRepository.CreateComment(entity);
             return Json(new {
-                UserName,
+                username,
                 CommentText,
                 entity.PublishedOn,
-                entity.User.Image
+                avatar
+                
             });           
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(PostCreateViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _postRepository.CreatePost(
+                    new Post {
+                        Title = model.Title,
+                        Content= model.Content,
+                        Url=model.Url,
+                        UserId=int.Parse(userId ?? ""),
+                        PublishedOn = DateTime.Now,
+                        Image = "1.jpg",
+                        IsActive = false
+                    }
+                );
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 
 

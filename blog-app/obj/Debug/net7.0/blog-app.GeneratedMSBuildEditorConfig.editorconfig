@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/mert/Desktop/asp-net/blog-app/blog-app
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/mert/Desktop/asp-net/blog-app/blog-app/Views/Posts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUG9zdHMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/mert/Desktop/asp-net/blog-app/blog-app/Views/Posts/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUG9zdHMvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -38,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/mert/Desktop/asp-net/blog-app/blog-app/Views/Users/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mert/Desktop/asp-net/blog-app/blog-app/Views/Users/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/mert/Desktop/asp-net/blog-app/blog-app/Views/_ViewImports.cshtml]

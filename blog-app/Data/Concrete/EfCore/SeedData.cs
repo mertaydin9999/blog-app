@@ -39,6 +39,7 @@ namespace blog_app.Data.Concrete.EfCore
                         new Post{ 
                             Title = "Asp.net core",
                             Content = "Asp.net core dersleri",
+                            Description="Asp.net core dersleri",
                             Url="aspnet-core",
                             IsActive = true,
                             PublishedOn =DateTime.Now.AddDays(-10),
@@ -53,6 +54,7 @@ namespace blog_app.Data.Concrete.EfCore
                         new Post{ 
                             Title = "PHP",
                             Content = "PHP dersleri",
+                            Description="PHP dersleri",
                             Url="php",
                             IsActive = true,
                             PublishedOn =DateTime.Now.AddDays(-20),
@@ -63,6 +65,7 @@ namespace blog_app.Data.Concrete.EfCore
                         new Post{ 
                             Title = "Django",
                             Content = "Django dersleri",
+                            Description="Django dersleri",
                             Url="django",
                             IsActive = true,
                             PublishedOn =DateTime.Now.AddDays(-5),

@@ -10,7 +10,7 @@ namespace blog_app.Models
         [Display(Name ="Eposta")] 
         public string? Email { get; set; }
         [Required]
-        [StringLength(10,ErrorMessage ="{0} alani en az {2} ve {1} karakter araliginda olmalidir.",MinimumLength =6)]
+        [StringLength(10,ErrorMessage ="{0} alani en az {2} ve {1} karakter araliginda olmalidir.",MinimumLength =5)]
         [DataType(DataType.Password)]
         [Display(Name ="Parola")]
         public string? Password { get; set; }

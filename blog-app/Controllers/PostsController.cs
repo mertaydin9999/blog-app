@@ -19,6 +19,8 @@ namespace blog_app.Controllers
         }
         public async Task<IActionResult> Index(string tag)
         {
+            var claims =User.Claims;
+
             var posts = _postRepository.Posts;
             if(!string.IsNullOrEmpty(tag))
             {

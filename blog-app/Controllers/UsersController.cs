@@ -19,7 +19,16 @@ namespace blog_app.Controllers
        }
        public IActionResult Login()
        {
-        return View();
+            if(User.Identity!.IsAuthenticated)
+            {
+                return RedirectToAction("Index","Posts");
+            }
+            return View();
+       }
+       public async Task<IActionResult> Logout()
+       {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
        }
        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)

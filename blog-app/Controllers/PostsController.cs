@@ -12,11 +12,13 @@ namespace blog_app.Controllers
     {
         private IPostRepository _postRepository;
         private ICommentRepository _commentRepository;
+        private ITagRepository _tagRepository;
        
-        public PostsController(IPostRepository postRepository,ICommentRepository commentRepository)
+        public PostsController(IPostRepository postRepository,ICommentRepository commentRepository,ITagRepository tagRepository)
         {
             _postRepository = postRepository;
             _commentRepository = commentRepository;
+            _tagRepository = tagRepository;
            
         }
         public async Task<IActionResult> Index(string tag)
@@ -35,6 +37,7 @@ namespace blog_app.Controllers
         {
             return View(await _postRepository
                         .Posts
+                        .Include(x => x.User)
                         .Include(x => x.Tags)
                         .Include(x => x.Comments)
                         .ThenInclude(x => x.User)
@@ -109,23 +112,25 @@ namespace blog_app.Controllers
             {
                 return NotFound();
             }
-            var post = _postRepository.Posts.FirstOrDefault(i=>i.PostId == id);
+            var post = _postRepository.Posts.Include(x=>x.Tags).FirstOrDefault(i=>i.PostId == id);
             if(post == null)
             {
                 return NotFound();
             }
+            ViewBag.Tags = _tagRepository.Tags.ToList();
             return View(new PostCreateViewModel{
                 PostId = post.PostId,
                 Title = post.Title,
                 Description = post.Description,
                 Content = post.Content,
                 Url = post.Url,
-                IsActive = post.IsActive
+                IsActive = post.IsActive,
+                Tags = post.Tags
             });
         }
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(PostCreateViewModel model)
+        public IActionResult Edit(PostCreateViewModel model,int[] tagIds)
         {
             if(ModelState.IsValid)
             {
@@ -140,9 +145,10 @@ namespace blog_app.Controllers
                 {
                     entityToUpdate.IsActive = model.IsActive;
                 }
-                _postRepository.EditPost(entityToUpdate);
+                _postRepository.EditPost(entityToUpdate,tagIds);
                 return RedirectToAction("List");
             }
+            ViewBag.Tags = _tagRepository.Tags.ToList();
             return View(model);
 
         }
